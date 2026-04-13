@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YieldScout
 
-## Getting Started
+Comparador de rendimientos: stablecoins DeFi (DeFiLlama) frente a referencias soberanas (CETES, Letras). Next.js App Router, TypeScript, Tailwind.
 
-First, run the development server:
+## Desarrollo local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Variables de entorno
 
-## Learn More
+Copia `.env.example` a `.env.local` y ajusta valores. En producción, define las mismas variables en el panel de Vercel (ver abajo).
 
-To learn more about Next.js, take a look at the following resources:
+## Despliegue en Vercel (Stage 5)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Repositorio Git**  
+   Sube el proyecto a GitHub/GitLab/Bitbucket si aún no está en remoto.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Importar en Vercel**  
+   [vercel.com/new](https://vercel.com/new): elige el repo, framework Next.js detectado automáticamente.
 
-## Deploy on Vercel
+3. **Variables de entorno en Vercel**  
+   Project → Settings → Environment Variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   | Variable | Uso |
+   |----------|-----|
+   | `NEXT_PUBLIC_SITE_URL` | URL de producción (ej. `https://tu-proyecto.vercel.app`) para `metadataBase` y enlaces correctos. |
+   | `FEEDBACK_WEBHOOK_URL` | Opcional: reenvío del formulario de feedback a un webhook. |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **CLI (alternativa)**  
+   Con [Vercel CLI](https://vercel.com/docs/cli): `npx vercel` (login interactivo la primera vez), luego `npx vercel --prod`.
+
+## QA en producción
+
+Checklist manual en [`plan.md`](./plan.md) (sección **Stage 5 — Deploy & QA**): pools en vivo, monedas, tooltips, CETES/Letras, calculadora, feedback, alert CTA, móvil ~375px, disclaimer, sin errores en consola.
+
+## Benchmarks semanales
+
+Actualiza `BENCHMARKS` en `src/lib/constants.ts` (Banxico / Tesoro) según indica el plan.
