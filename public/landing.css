@@ -5,8 +5,8 @@
   --color-coral: #ff6b6b;
   --color-ink: #1a1a1a;
   --color-cream: #fafaf8;
-  /* Sustituye por tu URL o archivo en /public (ej. /hero.jpg) */
-  --hero-bg-image: url("https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1920&q=80");
+  /* Hero ilustración Redito (archivo en /public) */
+  --hero-bg-image: url("/hero-redito.png");
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
   --shadow-soft: 0 4px 24px rgba(26, 26, 26, 0.08);
@@ -62,15 +62,18 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   padding: 1.5rem 1.25rem 2.5rem;
-  background-color: #2a2a28;
+  /* Fondo papel / tinta; gradiente inferior para texto claro encima */
+  background-color: #fdfcf8;
   background-image: linear-gradient(
       180deg,
-      rgba(26, 26, 26, 0.45) 0%,
-      rgba(26, 26, 26, 0.75) 100%
+      rgba(26, 26, 26, 0.06) 0%,
+      rgba(26, 26, 26, 0.22) 38%,
+      rgba(26, 26, 26, 0.78) 78%,
+      rgba(26, 26, 26, 0.88) 100%
     ),
     var(--hero-bg-image);
   background-size: cover;
-  background-position: center;
+  background-position: center top;
 }
 
 .hero__inner {
@@ -101,13 +104,15 @@ a {
   letter-spacing: -0.02em;
   color: #fff;
   text-wrap: balance;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.55);
 }
 
 .hero__sub {
   margin: 0 0 1.5rem;
   font-size: 1.05rem;
   max-width: 32ch;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.94);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.45);
 }
 
 .hero__actions {
