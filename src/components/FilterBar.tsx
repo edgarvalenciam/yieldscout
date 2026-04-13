@@ -45,7 +45,7 @@ export function FilterBar({
         className,
       )}
     >
-      <p className="text-sm font-medium text-ink-primary">
+      <p className="text-sm font-medium text-ink-secondary">
         Filtrar por riesgo (DeFi)
       </p>
       <div
@@ -58,11 +58,13 @@ export function FilterBar({
             key={item.id}
             type="button"
             size="sm"
-            variant={filter === item.id ? "secondary" : "outline"}
+            variant="outline"
             disabled={disabled}
             className={cn(
-              "gap-1.5",
-              filter === item.id && "shadow-sm",
+              "gap-1.5 border-[1.5px] border-ink-primary shadow-none",
+              filter === item.id
+                ? "bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow"
+                : "bg-transparent font-medium text-ink-primary hover:bg-brand-yellow",
             )}
             onClick={() => onFilterChange(item.id)}
             role="tab"
@@ -71,8 +73,10 @@ export function FilterBar({
             <span>{item.label}</span>
             <span
               className={cn(
-                "rounded-md bg-background/80 px-1.5 py-0.5 text-xs tabular-nums",
-                filter === item.id && "bg-background",
+                "rounded-md px-1.5 py-0.5 text-xs tabular-nums",
+                filter === item.id
+                  ? "bg-ink-primary/10 text-ink-primary"
+                  : "bg-ink-primary/5 text-ink-primary",
               )}
             >
               {item.count}

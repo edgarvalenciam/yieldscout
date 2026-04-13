@@ -25,10 +25,7 @@ export function CurrencySelector({
 }: CurrencySelectorProps) {
   return (
     <div
-      className={cn(
-        "inline-flex flex-wrap gap-1 rounded-xl border border-border bg-muted/30 p-1",
-        className,
-      )}
+      className={cn("inline-flex flex-wrap gap-1", className)}
       role="group"
       aria-label="Moneda de visualización"
     >
@@ -37,10 +34,12 @@ export function CurrencySelector({
           key={opt.value}
           type="button"
           size="sm"
-          variant={value === opt.value ? "secondary" : "ghost"}
+          variant="outline"
           className={cn(
-            "min-w-[3.25rem] px-3",
-            value === opt.value && "shadow-sm",
+            "min-w-[3.25rem] border-[1.5px] border-ink-primary px-3 shadow-none",
+            value === opt.value
+              ? "bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow"
+              : "bg-transparent font-medium text-ink-primary hover:bg-brand-yellow",
           )}
           disabled={disabled}
           onClick={() => onChange(opt.value)}

@@ -10,7 +10,7 @@ export function TableSkeleton({ rows = 8, className }: TableSkeletonProps) {
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-border bg-card ring-1 ring-foreground/10",
+        "overflow-hidden rounded-lg border border-[#E0E0E0] bg-white shadow-none ring-0",
         className,
       )}
       aria-hidden

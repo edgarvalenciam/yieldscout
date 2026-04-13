@@ -98,17 +98,38 @@ export function YieldTable({
         }}
       />
 
-      <div className="overflow-hidden rounded-xl border border-border bg-card ring-1 ring-foreground/10">
+      <div className="overflow-hidden rounded-lg border border-[#E0E0E0] bg-white shadow-none ring-0">
         <Table>
           <TableHeader>
-            <TableRow className="hover:bg-transparent">
-              <TableHead scope="col">Instrumento</TableHead>
-              <TableHead scope="col" className="max-sm:hidden">
+            <TableRow className="border-[#E0E0E0] bg-ink-primary hover:bg-ink-primary">
+              <TableHead
+                scope="col"
+                className="border-b border-[#E0E0E0] bg-ink-primary font-semibold text-white"
+              >
+                Instrumento
+              </TableHead>
+              <TableHead
+                scope="col"
+                className="max-sm:hidden border-b border-[#E0E0E0] bg-ink-primary font-semibold text-white"
+              >
                 Info
               </TableHead>
-              <TableHead scope="col">APY</TableHead>
-              <TableHead scope="col">Riesgo</TableHead>
-              <TableHead scope="col" className="text-right sm:text-left">
+              <TableHead
+                scope="col"
+                className="border-b border-[#E0E0E0] bg-ink-primary font-semibold text-white"
+              >
+                APY
+              </TableHead>
+              <TableHead
+                scope="col"
+                className="border-b border-[#E0E0E0] bg-ink-primary font-semibold text-white"
+              >
+                Riesgo
+              </TableHead>
+              <TableHead
+                scope="col"
+                className="border-b border-[#E0E0E0] bg-ink-primary text-right font-semibold text-white sm:text-left"
+              >
                 Ganancia/año
               </TableHead>
             </TableRow>
@@ -123,10 +144,10 @@ export function YieldTable({
                 capital={capital}
               />
             ))}
-            <TableRow className="bg-muted/50 hover:bg-muted/50">
+            <TableRow className="bg-white hover:bg-white">
               <TableCell
                 colSpan={5}
-                className="py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+                className="py-2.5 text-center text-sm font-medium text-ink-secondary"
               >
                 Pools DeFi (estables)
               </TableCell>

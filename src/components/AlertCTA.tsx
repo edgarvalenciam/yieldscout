@@ -72,15 +72,15 @@ export function AlertCTA({ className }: AlertCTAProps) {
     return (
       <Card
         className={cn(
-          "border-brand-purple/20 bg-gradient-to-br from-brand-purple-soft/80 to-brand-blue-soft/50",
+          "border-ink-primary bg-ink-primary text-white ring-0 ring-transparent",
           className,
         )}
       >
         <CardHeader>
-          <CardTitle className="font-display text-lg">
+          <CardTitle className="font-display text-lg font-extrabold text-white">
             Estás en la lista
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-white/85">
             Te avisaremos cuando haya novedades en Redito. Puedes cerrar
             esta página con tranquilidad.
           </CardDescription>
@@ -92,15 +92,15 @@ export function AlertCTA({ className }: AlertCTAProps) {
   return (
     <Card
       className={cn(
-        "border-brand-purple/25 bg-gradient-to-br from-brand-purple-soft/90 to-brand-blue-soft/40",
+        "border-ink-primary bg-ink-primary text-white ring-0 ring-transparent",
         className,
       )}
     >
       <CardHeader>
-        <CardTitle className="font-display text-lg">
+        <CardTitle className="font-display text-lg font-extrabold text-white">
           Alertas de nuevos rendimientos
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-white/85">
           Déjanos tu correo si quieres que te avisemos cuando añadamos
           protocolos o mejoras. Sin spam.
         </CardDescription>
@@ -124,9 +124,14 @@ export function AlertCTA({ className }: AlertCTAProps) {
               placeholder="tu@correo.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="h-9 border-0 bg-white text-ink-primary placeholder:text-ink-tertiary focus-visible:ring-2 focus-visible:ring-brand-yellow/80"
             />
           </div>
-          <Button type="submit" disabled={busy}>
+          <Button
+            type="submit"
+            disabled={busy}
+            className="bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow/90"
+          >
             Quiero alertas
           </Button>
         </form>

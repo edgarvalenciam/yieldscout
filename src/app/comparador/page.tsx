@@ -73,14 +73,14 @@ export default function ComparadorPage() {
   );
 
   return (
-    <main className="min-h-screen bg-surface-secondary pb-28">
+    <main className="min-h-screen bg-hero pb-28">
       <section className="bg-hero px-4 py-10 sm:py-14">
         <div className="mx-auto max-w-4xl space-y-6">
           <div className="space-y-2">
-            <h1 className="font-display text-3xl font-bold tracking-tight text-ink-primary sm:text-4xl">
+            <h1 className="font-display text-3xl font-extrabold tracking-tight text-ink-primary sm:text-4xl">
               Redito
             </h1>
-            <p className="max-w-2xl text-pretty text-base text-ink-secondary sm:text-lg">
+            <p className="max-w-2xl text-pretty text-base font-medium text-ink-secondary sm:text-lg">
               Compara rendimientos en stablecoins (DeFiLlama) frente a CETES y
               Letras del Tesoro. Cambia moneda y capital para ver cuánto podrías
               ganar al año en cada escenario.
@@ -89,7 +89,7 @@ export default function ComparadorPage() {
 
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div className="space-y-2">
-              <p className="text-xs font-medium uppercase tracking-wide text-ink-tertiary">
+              <p className="text-sm font-medium text-ink-secondary">
                 Moneda de visualización
               </p>
               <CurrencySelector value={currency} onChange={setCurrency} />
@@ -142,11 +142,11 @@ export default function ComparadorPage() {
 
         <footer
           className={cn(
-            "rounded-2xl border border-border bg-card p-6 text-sm text-ink-secondary shadow-card",
+            "rounded-2xl border border-[#D0D0D0] bg-[#F5F4F0] p-6 text-sm text-ink-secondary shadow-none ring-0",
           )}
         >
-          <p className="font-medium text-ink-primary">Aviso legal</p>
-          <p className="mt-2 text-pretty">
+          <p className="font-extrabold text-ink-primary">Aviso legal</p>
+          <p className="mt-2 text-pretty text-ink-secondary">
             Redito es una herramienta informativa. Los rendimientos DeFi son
             estimaciones y pueden cambiar; implican riesgo de contrato, de
             mercado y de contraparte, distinto al de deuda soberana. No somos

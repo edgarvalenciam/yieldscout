@@ -25,7 +25,7 @@ export function BenchmarkRow({
   );
 
   return (
-    <TableRow className="bg-brand-blue-soft/40 hover:bg-brand-blue-soft/60">
+    <TableRow className="bg-[#FFF9E6] hover:bg-[#FFF9E6]">
       <TableCell className="font-medium text-ink-primary">
         <div className="flex flex-col gap-0.5">
           <span>{benchmark.name}</span>
@@ -65,7 +65,7 @@ export function BenchmarkRow({
         <Badge
           variant="outline"
           className={cn(
-            "border-brand-blue/40 bg-brand-blue-soft font-medium text-ink-primary",
+            "border-0 bg-brand-yellow font-semibold text-ink-primary",
           )}
         >
           Referencia

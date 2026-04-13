@@ -62,18 +62,14 @@
   --color-surface-primary: #ffffff;
   --color-surface-secondary: #fafaf8;
   --color-surface-tertiary: #f5f4f0;
+  /* Comparador / stage3 — mismo crema que la ilustración del hero (sin gradiente) */
+  --color-hero: #f5f4f0;
   --color-ink-primary: #1a1a1a;
   --color-ink-secondary: #6b6b6b;
   --color-ink-tertiary: #a0a0a0;
   --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
   --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
   --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.15);
-  --background-image-hero: linear-gradient(
-    135deg,
-    #fff5c2 0%,
-    #ffe8e8 50%,
-    #e8f3ff 100%
-  );
   --background-image-highlight: linear-gradient(135deg, #ffd233 0%, #ff6b6b 100%);
   --background-image-pro: linear-gradient(135deg, #9b7ff0 0%, #4f9ef8 100%);
   --background-image-yield: linear-gradient(135deg, #2ecc8f 0%, #4f9ef8 100%);

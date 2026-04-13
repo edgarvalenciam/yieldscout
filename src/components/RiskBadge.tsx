@@ -19,7 +19,8 @@ const LEVEL_CLASS: Record<RiskLevel, string> = {
   low: "border-brand-green/40 bg-brand-green-soft text-ink-primary",
   medium:
     "border-brand-yellow/50 bg-brand-yellow-soft text-ink-primary dark:text-ink-primary",
-  high: "border-brand-coral/40 bg-brand-coral-soft text-ink-primary",
+  high:
+    "border-[1.5px] border-ink-primary bg-transparent font-semibold text-ink-primary",
 };
 
 export interface RiskBadgeProps {

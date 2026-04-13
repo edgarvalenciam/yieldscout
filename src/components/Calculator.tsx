@@ -30,7 +30,7 @@ function getSeparators(locale: string) {
 }
 
 const inputClassName = cn(
-  "h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80",
+  "h-11 w-full min-w-0 rounded-[8px] border-2 border-ink-primary bg-white px-3 py-2 text-lg font-bold text-ink-primary transition-colors outline-none placeholder:text-ink-tertiary focus-visible:border-ink-primary focus-visible:ring-2 focus-visible:ring-ink-primary/20 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
 );
 
 export function Calculator({
@@ -52,7 +52,7 @@ export function Calculator({
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="ys-capital"
-          className="text-sm font-medium text-ink-primary"
+          className="text-sm font-medium text-ink-secondary"
         >
           Capital a comparar
         </label>
@@ -74,13 +74,13 @@ export function Calculator({
             placeholder="Ej. 100000"
             className={cn(inputClassName, "max-w-xs")}
           />
-          <span className="text-sm text-muted-foreground">
+          <span className="text-sm font-medium text-ink-secondary">
             Monto en {currency}
           </span>
         </div>
       </div>
       <div className="flex flex-wrap gap-2">
-        <span className="w-full text-xs font-medium uppercase tracking-wide text-ink-tertiary sm:w-auto sm:pr-2">
+        <span className="w-full text-sm font-medium text-ink-secondary sm:w-auto sm:pr-2">
           Atajos
         </span>
         {presets.map((amount) => (
@@ -91,6 +91,11 @@ export function Calculator({
             variant="outline"
             disabled={disabled}
             onClick={() => onCapitalChange(amount)}
+            className={cn(
+              "border-[1.5px] border-ink-primary bg-transparent font-medium text-ink-primary shadow-none hover:bg-brand-yellow",
+              capital === amount &&
+                "bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow",
+            )}
           >
             {new Intl.NumberFormat(
               currency === "USD"
