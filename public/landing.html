@@ -35,7 +35,11 @@
         </div>
       </header>
 
-      <section class="features" id="features" aria-labelledby="features-title">
+      <section
+        class="features features--steps"
+        id="features"
+        aria-labelledby="features-title"
+      >
         <div class="features__head">
           <h2 id="features-title" class="features__title">
             Todo en una herramienta clara
@@ -45,51 +49,94 @@
           </p>
         </div>
 
-        <div class="features__grid">
-          <article class="card">
-            <div class="card__icon card__icon--yellow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="9" r="5" />
-                <circle cx="15" cy="15" r="5" />
-              </svg>
+        <div class="feature-showcase">
+          <div class="feature-showcase__media">
+            <div class="feature-showcase__frames" role="group" aria-label="Destacados">
+              <figure class="feature-showcase__frame feature-showcase__frame--1">
+                <img
+                  src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                  alt=""
+                  width="1000"
+                  height="500"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="visually-hidden">
+                  Rendimientos en tu moneda
+                </figcaption>
+              </figure>
+              <figure class="feature-showcase__frame feature-showcase__frame--2">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                  alt=""
+                  width="1000"
+                  height="500"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="visually-hidden">
+                  Riesgo explicado sin jerga
+                </figcaption>
+              </figure>
+              <figure class="feature-showcase__frame feature-showcase__frame--3">
+                <img
+                  src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
+                  alt=""
+                  width="1000"
+                  height="500"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="visually-hidden">
+                  DeFi vs CETES en una pantalla
+                </figcaption>
+              </figure>
             </div>
-            <h3 class="card__title">Rendimientos en tu moneda</h3>
-            <p class="card__text">
-              Ve cuánto ganarías en MXN o EUR reales, no solo porcentajes
-              abstractos.
-            </p>
-          </article>
+            <div class="feature-showcase__gradient" aria-hidden="true"></div>
+            <div class="feature-showcase__progress" aria-hidden="true"></div>
+          </div>
 
-          <article class="card">
-            <div class="card__icon card__icon--green" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="8" y="2" width="8" height="20" rx="2" />
-                <circle cx="12" cy="7" r="2" />
-                <circle cx="12" cy="12" r="2" />
-                <circle cx="12" cy="17" r="2" />
-              </svg>
-            </div>
-            <h3 class="card__title">Riesgo explicado sin jerga</h3>
-            <p class="card__text">
-              Cada opción tiene un semáforo de riesgo con explicación en lenguaje
-              cotidiano.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="card__icon card__icon--coral" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="4" width="20" height="14" rx="2" />
-                <path d="M8 21h8M12 17v4" />
-                <path d="M7 9l3 3 7-7" />
-              </svg>
-            </div>
-            <h3 class="card__title">DeFi vs CETES en una pantalla</h3>
-            <p class="card__text">
-              Compara las mejores oportunidades DeFi directamente contra tu
-              referencia de siempre.
-            </p>
-          </article>
+          <ol class="feature-steps">
+            <li class="feature-step">
+              <span class="feature-step__badge" aria-hidden="true">
+                <span class="feature-step__num">1</span>
+                <span class="feature-step__check">✓</span>
+              </span>
+              <div class="feature-step__body">
+                <h3 class="feature-step__title">Rendimientos en tu moneda</h3>
+                <p class="feature-step__text">
+                  Ve cuánto ganarías en MXN o EUR reales, no solo porcentajes
+                  abstractos.
+                </p>
+              </div>
+            </li>
+            <li class="feature-step">
+              <span class="feature-step__badge" aria-hidden="true">
+                <span class="feature-step__num">2</span>
+                <span class="feature-step__check">✓</span>
+              </span>
+              <div class="feature-step__body">
+                <h3 class="feature-step__title">Riesgo explicado sin jerga</h3>
+                <p class="feature-step__text">
+                  Cada opción tiene un semáforo de riesgo con explicación en
+                  lenguaje cotidiano.
+                </p>
+              </div>
+            </li>
+            <li class="feature-step">
+              <span class="feature-step__badge" aria-hidden="true">
+                <span class="feature-step__num">3</span>
+                <span class="feature-step__check">✓</span>
+              </span>
+              <div class="feature-step__body">
+                <h3 class="feature-step__title">DeFi vs CETES en una pantalla</h3>
+                <p class="feature-step__text">
+                  Compara las mejores oportunidades DeFi directamente contra tu
+                  referencia de siempre.
+                </p>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
 

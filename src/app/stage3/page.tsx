@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { Currency, ExchangeRates, Pool, RiskTableFilter } from "@/types";
-import { BENCHMARKS } from "@/lib/constants";
+import { LETRAS_BENCHMARK } from "@/lib/constants";
+import { useCetes } from "@/hooks/useCetes";
 import { AlertCTA } from "@/components/AlertCTA";
 import { Calculator } from "@/components/Calculator";
 import { CurrencySelector } from "@/components/CurrencySelector";
@@ -89,6 +90,12 @@ export default function Stage3ShowcasePage() {
   const [riskFilter, setRiskFilter] = useState<RiskTableFilter>("all");
   const [showSkeleton, setShowSkeleton] = useState(false);
 
+  const cetesBenchmark = useCetes();
+  const benchmarks = useMemo(
+    () => [cetesBenchmark, LETRAS_BENCHMARK],
+    [cetesBenchmark],
+  );
+
   return (
     <main className="min-h-screen bg-surface-secondary pb-24">
       <section className="bg-hero px-4 py-10">
@@ -152,7 +159,7 @@ export default function Stage3ShowcasePage() {
           ) : (
             <YieldTable
               pools={MOCK_POOLS}
-              benchmarks={BENCHMARKS}
+              benchmarks={benchmarks}
               currency={currency}
               rates={MOCK_RATES}
               capital={capital}

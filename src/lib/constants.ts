@@ -1,28 +1,28 @@
 import type { BenchmarkProduct } from "@/types";
 
-// Actualizar cada lunes consultando banxico.org.mx y tesoro.gob.es
-export const BENCHMARKS: BenchmarkProduct[] = [
-  {
-    id: "cetes-28",
-    name: "CETES 28 días",
-    country: "MX",
-    apyAnnual: 6.6,
-    source: "Subasta Banxico · 7 abril 2026",
-    description:
-      "Deuda del gobierno mexicano. El instrumento más seguro en México.",
-    lastUpdated: "2026-04-07",
-  },
-  {
-    id: "letras-tesoro-12m",
-    name: "Letras del Tesoro 12M",
-    country: "ES",
-    apyAnnual: 2.64,
-    source: "Tesoro Público España · 7 abril 2026",
-    description:
-      "Deuda del gobierno español a 12 meses. Referencia de riesgo cero en España.",
-    lastUpdated: "2026-04-07",
-  },
-];
+/** CETES: el APY y fechas vienen de Banxico vía `/api/cetes` + `useCetes`. */
+export const CETES_BENCHMARK_BASE: Omit<
+  BenchmarkProduct,
+  "apyAnnual" | "source" | "lastUpdated"
+> = {
+  id: "cetes-28",
+  name: "CETES 28 días",
+  country: "MX",
+  description:
+    "Deuda del gobierno mexicano. El instrumento más seguro en México.",
+};
+
+// Actualizar Letras consultando tesoro.gob.es
+export const LETRAS_BENCHMARK: BenchmarkProduct = {
+  id: "letras-tesoro-12m",
+  name: "Letras del Tesoro 12M",
+  country: "ES",
+  apyAnnual: 2.64,
+  source: "Tesoro Público España · 7 abril 2026",
+  description:
+    "Deuda del gobierno español a 12 meses. Referencia de riesgo cero en España.",
+  lastUpdated: "2026-04-07",
+};
 
 export const PROTOCOL_METADATA: Record<
   string,
@@ -73,11 +73,14 @@ export const CACHE_KEYS = {
   CAPITAL: "ys_capital",
   RISK_FILTER: "ys_risk_filter",
   EMAIL_SENT: "ys_email_sent",
+  CETES: "ys_cetes_cache",
 } as const;
 
 export const CACHE_DURATION = {
   YIELDS: 30 * 60 * 1000,
   FX: 60 * 60 * 1000,
+  /** CETES: subasta semanal; no hace falta refrescar más de una vez al día. */
+  CETES: 24 * 60 * 60 * 1000,
 } as const;
 
 export const CAPITAL_PRESETS = {

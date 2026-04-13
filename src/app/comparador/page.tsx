@@ -2,7 +2,8 @@
 
 import { useCallback, useMemo, useState } from "react";
 import type { RiskTableFilter } from "@/types";
-import { BENCHMARKS } from "@/lib/constants";
+import { LETRAS_BENCHMARK } from "@/lib/constants";
+import { useCetes } from "@/hooks/useCetes";
 import { getFallbackExchangeRates } from "@/lib/exchangeRate";
 import { useCurrency } from "@/hooks/useCurrency";
 import { useExchangeRates } from "@/hooks/useExchangeRates";
@@ -65,6 +66,12 @@ export default function ComparadorPage() {
     setRiskFilter(next);
   }, []);
 
+  const cetesBenchmark = useCetes();
+  const benchmarks = useMemo(
+    () => [cetesBenchmark, LETRAS_BENCHMARK],
+    [cetesBenchmark],
+  );
+
   return (
     <main className="min-h-screen bg-surface-secondary pb-28">
       <section className="bg-hero px-4 py-10 sm:py-14">
@@ -122,7 +129,7 @@ export default function ComparadorPage() {
       <div className="mx-auto max-w-4xl space-y-10 px-4 py-8">
         <YieldTable
           pools={pools}
-          benchmarks={BENCHMARKS}
+          benchmarks={benchmarks}
           currency={currency}
           rates={effectiveRates}
           capital={capital}

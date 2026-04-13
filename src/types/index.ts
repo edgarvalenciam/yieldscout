@@ -33,6 +33,10 @@ export interface BenchmarkProduct {
   source: string;
   description: string;
   lastUpdated: string;
+  /** Texto bajo el APY (p. ej. fuente Banxico y fecha del dato). */
+  apyFootnote?: string;
+  /** Si el fetch falló y se usó caché antiguo. */
+  staleDataBadge?: string;
 }
 
 export interface ExchangeRates {

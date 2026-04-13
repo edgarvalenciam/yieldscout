@@ -38,11 +38,28 @@ export function BenchmarkRow({
         Referencia soberana
       </TableCell>
       <TableCell className="tabular-nums">
-        {benchmark.apyAnnual.toLocaleString("es-MX", {
-          minimumFractionDigits: 1,
-          maximumFractionDigits: 2,
-        })}
-        %
+        <div className="flex flex-col items-start gap-1">
+          <span>
+            {benchmark.apyAnnual.toLocaleString("es-MX", {
+              minimumFractionDigits: 1,
+              maximumFractionDigits: 2,
+            })}
+            %
+          </span>
+          {benchmark.apyFootnote ? (
+            <span className="text-xs font-normal text-ink-secondary">
+              {benchmark.apyFootnote}
+            </span>
+          ) : null}
+          {benchmark.staleDataBadge ? (
+            <Badge
+              variant="outline"
+              className="border-amber-500/40 bg-amber-50 font-normal text-amber-950"
+            >
+              {benchmark.staleDataBadge}
+            </Badge>
+          ) : null}
+        </div>
       </TableCell>
       <TableCell>
         <Badge
