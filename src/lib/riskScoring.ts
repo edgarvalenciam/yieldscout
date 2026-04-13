@@ -1,9 +1,23 @@
 import type { Pool, RiskLevel } from "@/types";
 import { PROTOCOL_METADATA } from "@/lib/constants";
 
+/** Protocolos auditados y maduros: mínimo 2 auditorías efectivas para el scoring. */
+/** Slugs alineados con yields.llama.fi (p. ej. morpho-v1, sparklend, no solo "morpho"). */
+export const AUDITED_PROTOCOL_WHITELIST = new Set([
+  "aave-v3",
+  "compound-v3",
+  "morpho",
+  "morpho-v1",
+  "spark",
+  "sparklend",
+  "spark-savings",
+]);
+
+const MIN_TVL_MATURE_LOW_USD = 500_000_000;
+
 /**
  * Campos relevantes del pool de yields.llama.fi para puntuar riesgo.
- * (La API no incluye auditorías por pool; usamos PROTOCOL_METADATA por protocolo.)
+ * `audits` puede venir como número o string desde DeFiLlama; se combina con PROTOCOL_METADATA.
  */
 export interface RawPoolInput {
   pool: string;
@@ -18,11 +32,27 @@ export interface RawPoolInput {
   stablecoin: boolean;
   ilRisk?: string;
   exposure?: string;
+  audits?: unknown;
 }
 
-export function auditCountForProject(project: string): number {
-  const meta = PROTOCOL_METADATA[project];
-  return meta?.auditFirms.length ?? 0;
+export function parseAuditsField(raw: unknown): number {
+  if (raw == null || raw === "") return 0;
+  if (typeof raw === "number") {
+    return Number.isFinite(raw) ? Math.max(0, Math.floor(raw)) : 0;
+  }
+  const s = String(raw).trim();
+  const n = parseInt(s, 10);
+  return Number.isFinite(n) ? Math.max(0, n) : 0;
+}
+
+export function effectiveAuditCount(project: string, apiAuditsRaw: unknown): number {
+  const fromApi = parseAuditsField(apiAuditsRaw);
+  const fromMeta = PROTOCOL_METADATA[project]?.auditFirms.length ?? 0;
+  let n = Math.max(fromApi, fromMeta);
+  if (AUDITED_PROTOCOL_WHITELIST.has(project)) {
+    n = Math.max(n, 2);
+  }
+  return n;
 }
 
 function formatTvlShort(tvlUsd: number): string {
@@ -46,7 +76,7 @@ export function scorePool(
   else if (tvl < 1_000_000) score += 1;
   if (tvl < 100_000) score += 1;
 
-  const audits = auditCountForProject(raw.project);
+  const audits = effectiveAuditCount(raw.project, raw.audits);
   if (audits === 0) score += 2;
   else if (audits === 1) score += 1;
 
@@ -64,6 +94,13 @@ export function scorePool(
   const reward = raw.apyReward ?? 0;
   const totalParts = base + reward;
   if (totalParts > 0 && reward > 0 && reward / totalParts > 0.5) score += 1;
+
+  if (
+    AUDITED_PROTOCOL_WHITELIST.has(raw.project) &&
+    raw.tvlUsd >= MIN_TVL_MATURE_LOW_USD
+  ) {
+    score = Math.min(score, 3);
+  }
 
   score = Math.max(1, Math.min(10, score));
 

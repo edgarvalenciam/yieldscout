@@ -24,15 +24,13 @@ export function BenchmarkRow({
     rates,
   );
 
-  const countryLabel = benchmark.country === "MX" ? "México" : "España";
-
   return (
     <TableRow className="bg-brand-blue-soft/40 hover:bg-brand-blue-soft/60">
       <TableCell className="font-medium text-ink-primary">
         <div className="flex flex-col gap-0.5">
           <span>{benchmark.name}</span>
           <span className="text-xs font-normal text-ink-secondary">
-            {benchmark.source} · {countryLabel}
+            {benchmark.source}
           </span>
         </div>
       </TableCell>

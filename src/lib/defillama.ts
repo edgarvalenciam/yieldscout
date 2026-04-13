@@ -1,6 +1,6 @@
 import type { Pool } from "@/types";
 import { PROTOCOL_METADATA } from "@/lib/constants";
-import { auditCountForProject, scorePool } from "@/lib/riskScoring";
+import { effectiveAuditCount, scorePool } from "@/lib/riskScoring";
 
 const YIELDS_URL = "https://yields.llama.fi/pools";
 
@@ -37,6 +37,8 @@ interface LlamaYieldPool {
   rewardTokens: string[] | null;
   pool: string;
   stablecoin: boolean;
+  /** Número de auditorías; la API a veces envía string (p. ej. "2"). */
+  audits?: unknown;
   outlier?: boolean;
   ilRisk?: string;
   exposure?: string;
@@ -81,6 +83,7 @@ function toPool(p: LlamaYieldPool, lastUpdated: Date): Pool {
     stablecoin: p.stablecoin,
     ilRisk: p.ilRisk,
     exposure: p.exposure,
+    audits: p.audits,
   });
 
   const meta = PROTOCOL_METADATA[p.project];
@@ -98,7 +101,7 @@ function toPool(p: LlamaYieldPool, lastUpdated: Date): Pool {
     apyTotal,
     rewardTokens,
     isStablecoin: p.stablecoin,
-    audits: auditCountForProject(p.project),
+    audits: effectiveAuditCount(p.project, p.audits),
     ...risk,
     category: p.exposure ?? "single",
     url,
