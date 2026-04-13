@@ -1,12 +1,28 @@
 /* Redito landing — mobile-first. Replace hero image in :root. */
+@font-face {
+  font-family: "Arimo";
+  src: url("/fonts/arimo/Arimo-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arimo";
+  src: url("/fonts/arimo/Arimo-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --color-primary: #ffd233;
   --color-green: #2ecc8f;
   --color-coral: #ff6b6b;
   --color-ink: #1a1a1a;
   --color-cream: #fafaf8;
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Arimo", Georgia, serif;
+  --font-body: "Arimo", system-ui, sans-serif;
   --shadow-soft: 0 4px 24px rgba(26, 26, 26, 0.08);
   /* Carrusel de features (solo CSS) */
   --feature-count: 3;
@@ -60,7 +76,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 1.5rem 1.25rem 2.5rem;
   background-color: #1a1a1a;
 }
@@ -90,11 +106,17 @@ a {
 .hero__inner {
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
   width: 100%;
   max-width: 40rem;
-  margin-left: auto;
+  margin-left: 0;
   margin-right: auto;
-  text-align: center;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border-radius: 16px;
+  padding: 40px 48px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -117,11 +139,11 @@ a {
   margin-bottom: 0.75rem;
   padding: 0.25rem 0.6rem;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-ink);
-  background: var(--color-primary);
+  color: #1a1a1a;
+  background: #ffd233;
   border-radius: 999px;
 }
 
@@ -129,19 +151,22 @@ a {
   margin: 0 0 0.75rem;
   font-family: var(--font-display);
   font-size: clamp(2rem, 8vw, 3rem);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: #ffffff;
+  text-align: left;
   text-wrap: balance;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
 }
 
 .hero__sub {
-  margin: 0 auto 1.5rem;
-  font-size: 1.05rem;
+  margin: 0;
+  font-size: 18px;
   max-width: 36rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: #f0f0f0;
+  opacity: 1;
+  text-align: left;
 }
 
 .hero__actions {
@@ -149,6 +174,7 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+  margin-top: 24px;
 }
 
 .hero__actions .btn--primary {
@@ -159,14 +185,16 @@ a {
 
 .hero__skip {
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(255, 255, 255, 0.6);
   text-underline-offset: 3px;
   background: none;
 }
 
 .hero__skip:hover {
-  color: rgba(255, 255, 255, 0.85);
+  color: #ffffff;
 }
 
 /* —— Buttons —— */

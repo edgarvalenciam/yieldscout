@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
+import { JetBrains_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
+const arimo = localFont({
+  src: [
+    {
+      path: "../fonts/arimo/Arimo-VariableFont_wght.ttf",
+      style: "normal",
+    },
+    {
+      path: "../fonts/arimo/Arimo-Italic-VariableFont_wght.ttf",
+      style: "italic",
+    },
+  ],
+  variable: "--font-arimo",
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -53,7 +59,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${inter.variable} ${playfair.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${arimo.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white font-sans">
         <TooltipProvider>{children}</TooltipProvider>
