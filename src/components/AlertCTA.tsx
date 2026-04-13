@@ -81,7 +81,7 @@ export function AlertCTA({ className }: AlertCTAProps) {
             Estás en la lista
           </CardTitle>
           <CardDescription>
-            Te avisaremos cuando haya novedades en YieldScout. Puedes cerrar
+            Te avisaremos cuando haya novedades en Redito. Puedes cerrar
             esta página con tranquilidad.
           </CardDescription>
         </CardHeader>

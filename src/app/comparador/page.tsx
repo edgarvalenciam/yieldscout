@@ -78,7 +78,7 @@ export default function ComparadorPage() {
         <div className="mx-auto max-w-4xl space-y-6">
           <div className="space-y-2">
             <h1 className="font-display text-3xl font-bold tracking-tight text-ink-primary sm:text-4xl">
-              YieldScout
+              Redito
             </h1>
             <p className="max-w-2xl text-pretty text-base text-ink-secondary sm:text-lg">
               Compara rendimientos en stablecoins (DeFiLlama) frente a CETES y
@@ -147,7 +147,7 @@ export default function ComparadorPage() {
         >
           <p className="font-medium text-ink-primary">Aviso legal</p>
           <p className="mt-2 text-pretty">
-            YieldScout es una herramienta informativa. Los rendimientos DeFi son
+            Redito es una herramienta informativa. Los rendimientos DeFi son
             estimaciones y pueden cambiar; implican riesgo de contrato, de
             mercado y de contraparte, distinto al de deuda soberana. No somos
             asesores financieros: verifica en las fuentes oficiales (Banxico,

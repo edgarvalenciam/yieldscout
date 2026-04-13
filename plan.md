@@ -1,6 +1,6 @@
-# YieldScout MVP — Implementation plan (stages & steps)
+# Redito MVP — Implementation plan (stages & steps)
 
-This document turns the **YieldScout Implementation Plan** and **Architecture Guide** into **stages** you can ship incrementally. Complete stages in order; within each stage, complete steps in order unless noted.
+This document turns the **Redito Implementation Plan** and **Architecture Guide** into **stages** you can ship incrementally. Complete stages in order; within each stage, complete steps in order unless noted.
 
 **MVP rule:** Features use **real data** (DeFiLlama, ExchangeRate API), not mocks. Demo-ready = live numbers.
 
@@ -69,7 +69,7 @@ This document turns the **YieldScout Implementation Plan** and **Architecture Gu
    - Define: `Currency`, `RiskLevel`, `Pool`, `BenchmarkProduct`, `ExchangeRates`, `CalculatorResult`, `FeedbackData` (per Implementation Plan).
 
 2. **`src/lib/constants.ts`**  
-   - `BENCHMARKS` (CETES 28d MX, Letras 12M ES) with **current** `apyAnnual` and `lastUpdated` (update weekly from Banxico / Tesoro).  
+   - CETES vía API Banxico (`/api/cetes`) + `useCetes`; `LETRAS_BENCHMARK` (Letras 12M ES) con `apyAnnual` y `lastUpdated` actuales (revisar frente a Tesoro).  
    - `PROTOCOL_METADATA`, `CACHE_KEYS`, `CACHE_DURATION`, `CAPITAL_PRESETS`.
 
 **Stage 1 done when:** `tsc` / IDE shows **no type errors** in `types` and `constants`.
@@ -188,7 +188,7 @@ This document turns the **YieldScout Implementation Plan** and **Architecture Gu
    - [ ] No console errors in production smoke test  
 
 3. **Weekly ops**  
-   - Update `BENCHMARKS` in `constants.ts` (Banxico / Tesoro).
+   - Verificar Letras en `LETRAS_BENCHMARK` (`constants.ts`); CETES sigue Banxico por API (token `BANXICO_TOKEN`).
 
 **Stage 5 done when:** QA checklist passed on production URL.
 
@@ -228,4 +228,4 @@ Stage 0 (bootstrap)
 
 ---
 
-*Derived from YieldScout Implementation Plan & Architecture Guide — for incremental delivery.*
+*Derived from Redito Implementation Plan & Architecture Guide — for incremental delivery.*

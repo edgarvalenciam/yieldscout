@@ -1,4 +1,4 @@
-# YieldScout
+# Redito
 
 Comparador de rendimientos: stablecoins DeFi (DeFiLlama) frente a referencias soberanas (CETES, Letras). Next.js App Router, TypeScript, Tailwind.
 
@@ -43,6 +43,6 @@ Copia `.env.example` a `.env.local` y ajusta valores. En producción, define las
 
 Checklist manual en [`plan.md`](./plan.md) (sección **Stage 5 — Deploy & QA**): pools en vivo, monedas, tooltips, CETES/Letras, calculadora, feedback, alert CTA, móvil ~375px, disclaimer, sin errores en consola.
 
-## Benchmarks semanales
+## Benchmarks
 
-Actualiza `BENCHMARKS` en `src/lib/constants.ts` (Banxico / Tesoro) según indica el plan.
+CETES se actualiza desde Banxico vía `/api/cetes` (token `BANXICO_TOKEN`). Letras del Tesoro: `LETRAS_BENCHMARK` en `src/lib/constants.ts` (revisión periódica manual según el plan).

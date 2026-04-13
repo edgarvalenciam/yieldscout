@@ -24,22 +24,22 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "YieldScout — DeFi vs CETES y Letras",
-    template: "%s · YieldScout",
+    default: "Redito — DeFi vs CETES y Letras",
+    template: "%s · Redito",
   },
   description:
     "Compara APY de stablecoins en protocolos DeFi con CETES (México) y Letras del Tesoro (España). Montos en MXN, EUR o USD.",
   openGraph: {
-    title: "YieldScout — Compara rendimientos DeFi vs CETES y Letras",
+    title: "Redito — Compara rendimientos DeFi vs CETES y Letras",
     description:
       "Tabla en vivo con datos de DeFiLlama, referencias soberanas y calculadora por capital.",
     locale: "es_MX",
     type: "website",
-    siteName: "YieldScout",
+    siteName: "Redito",
   },
   twitter: {
     card: "summary_large_image",
-    title: "YieldScout — DeFi vs CETES y Letras",
+    title: "Redito — DeFi vs CETES y Letras",
     description:
       "Compara rendimientos en stablecoins con referencias de deuda soberana en MXN, EUR y USD.",
   },

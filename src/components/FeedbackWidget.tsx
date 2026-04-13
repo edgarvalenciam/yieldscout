@@ -75,7 +75,7 @@ export function FeedbackWidget({ className }: FeedbackWidgetProps) {
                 Tu opinión
               </CardTitle>
               <CardDescription>
-                Tres preguntas rápidas. Nos ayuda a mejorar YieldScout.
+                Tres preguntas rápidas. Nos ayuda a mejorar Redito.
               </CardDescription>
             </div>
             <Button

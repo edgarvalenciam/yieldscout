@@ -67,13 +67,13 @@ export const PROTOCOL_METADATA: Record<
 };
 
 export const CACHE_KEYS = {
-  YIELDS: "ys_yields_v2",
-  FX: "ys_fx_v1",
-  CURRENCY: "ys_currency",
-  CAPITAL: "ys_capital",
-  RISK_FILTER: "ys_risk_filter",
-  EMAIL_SENT: "ys_email_sent",
-  CETES: "ys_cetes_cache",
+  YIELDS: "rd_yields_v2",
+  FX: "rd_fx_v1",
+  CURRENCY: "rd_currency",
+  CAPITAL: "rd_capital",
+  RISK_FILTER: "rd_risk_filter",
+  EMAIL_SENT: "rd_email_sent",
+  CETES: "rd_cetes_cache",
 } as const;
 
 export const CACHE_DURATION = {
