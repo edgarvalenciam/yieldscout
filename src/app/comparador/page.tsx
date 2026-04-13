@@ -22,7 +22,7 @@ function formatStatusTime(d: Date | null): string {
   }).format(d);
 }
 
-export default function Home() {
+export default function ComparadorPage() {
   const { currency, setCurrency } = useCurrency();
   const [capital, setCapital] = useState(100_000);
   const [riskFilter, setRiskFilter] = useState<RiskTableFilter>("all");
