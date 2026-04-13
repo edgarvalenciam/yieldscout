@@ -19,6 +19,16 @@
   <body>
     <div class="landing">
       <header class="hero" role="banner">
+        <video
+          class="hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-hidden="true"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
         <div class="hero__inner">
           <span class="hero__eyebrow">Para inversores en México y España</span>
           <h1 class="hero__title">
@@ -54,8 +64,8 @@
             <div class="feature-showcase__frames" role="group" aria-label="Destacados">
               <figure class="feature-showcase__frame feature-showcase__frame--1">
                 <img
-                  src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                  alt=""
+                  src="/feature-rendimientos-moneda.png"
+                  alt="Ilustración: rendimiento anual en tu moneda, en cifras concretas frente a porcentajes abstractos."
                   width="1000"
                   height="500"
                   loading="lazy"
@@ -67,8 +77,8 @@
               </figure>
               <figure class="feature-showcase__frame feature-showcase__frame--2">
                 <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                  alt=""
+                  src="/feature-riesgo-estrategia.png"
+                  alt="Ilustración: comprensión y estrategia de inversión con niveles de riesgo (muy seguro, equilibrado, más riesgo) explicados de forma sencilla."
                   width="1000"
                   height="500"
                   loading="lazy"
@@ -80,15 +90,15 @@
               </figure>
               <figure class="feature-showcase__frame feature-showcase__frame--3">
                 <img
-                  src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                  alt=""
+                  src="/feature-defi-vs-tradicional.png"
+                  alt="Ilustración: comparación DeFi frente a tu banco, rendimientos y costes, todo en una pantalla."
                   width="1000"
                   height="500"
                   loading="lazy"
                   decoding="async"
                 />
                 <figcaption class="visually-hidden">
-                  DeFi vs CETES en una pantalla
+                  DeFi vs inversión tradicional en una pantalla
                 </figcaption>
               </figure>
             </div>
@@ -105,8 +115,8 @@
               <div class="feature-step__body">
                 <h3 class="feature-step__title">Rendimientos en tu moneda</h3>
                 <p class="feature-step__text">
-                  Ve cuánto ganarías en MXN o EUR reales, no solo porcentajes
-                  abstractos.
+                  Ve cuánto ganarías en tu moneda, en números reales, no solo
+                  porcentajes abstractos.
                 </p>
               </div>
             </li>
@@ -129,10 +139,12 @@
                 <span class="feature-step__check">✓</span>
               </span>
               <div class="feature-step__body">
-                <h3 class="feature-step__title">DeFi vs CETES en una pantalla</h3>
+                <h3 class="feature-step__title">
+                  DeFi vs inversión tradicional en una pantalla
+                </h3>
                 <p class="feature-step__text">
-                  Compara las mejores oportunidades DeFi directamente contra tu
-                  referencia de siempre.
+                  Compara DeFi contra lo que ya conoces: depósitos, fondos,
+                  letras del tesoro.
                 </p>
               </div>
             </li>
