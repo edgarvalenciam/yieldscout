@@ -53,7 +53,7 @@ export function PoolDetailPanel({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md border border-ink-primary/10 bg-white sm:max-w-lg">
+      <DialogContent className="max-w-md border border-ink-primary/10 bg-white sm:max-w-xl">
         <DialogHeader>
           <DialogTitle className="pr-8 font-display text-lg sm:text-xl">
             {pool.protocol} · {pool.symbol}
@@ -102,8 +102,28 @@ export function PoolDetailPanel({
             </div>
             <div className="flex flex-col items-end gap-1">
               <span className="text-xs text-muted-foreground">Riesgo</span>
-              <RiskBadge level={pool.riskLevel} riskText={pool.riskText} />
+              <RiskBadge
+                level={pool.riskLevel}
+                riskSummary={pool.riskSummary}
+                hideTooltip
+              />
             </div>
+          </section>
+
+          <section className="rounded-xl border border-ink-primary/10 bg-surface-tertiary p-4">
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Análisis de riesgo
+            </h3>
+            <dl className="space-y-3 text-sm">
+              {pool.riskDetailSections.map((block) => (
+                <div key={block.label}>
+                  <dt className="font-semibold text-ink-primary">{block.label}</dt>
+                  <dd className="mt-1 text-pretty text-ink-secondary leading-relaxed">
+                    {block.text}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </section>
 
           <section>

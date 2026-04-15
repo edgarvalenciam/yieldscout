@@ -25,33 +25,51 @@ const LEVEL_CLASS: Record<RiskLevel, string> = {
 
 export interface RiskBadgeProps {
   level: RiskLevel;
-  /** Texto explicativo del modelo de riesgo (tooltip). */
-  riskText: string;
+  /** Resumen breve para el tooltip (tabla). En detalle usa `hideTooltip`. */
+  riskSummary: string;
+  /** Si true, solo muestra el badge (p. ej. cuando el detalle está en el panel). */
+  hideTooltip?: boolean;
   className?: string;
 }
 
-export function RiskBadge({ level, riskText, className }: RiskBadgeProps) {
+export function RiskBadge({
+  level,
+  riskSummary,
+  hideTooltip,
+  className,
+}: RiskBadgeProps) {
+  const badge = (
+    <Badge
+      variant="outline"
+      className={cn(
+        "pointer-events-none max-w-full truncate font-medium",
+        LEVEL_CLASS[level],
+      )}
+    >
+      {LEVEL_LABEL[level]}
+    </Badge>
+  );
+
+  if (hideTooltip) {
+    return <span className={cn("inline-flex max-w-full", className)}>{badge}</span>;
+  }
+
   return (
     <Tooltip>
       <TooltipTrigger
         type="button"
-        className={cn("inline-flex max-w-full cursor-help touch-manipulation", className)}
+        className={cn(
+          "inline-flex max-w-full cursor-help touch-manipulation",
+          className,
+        )}
       >
-        <Badge
-          variant="outline"
-          className={cn(
-            "pointer-events-none max-w-full truncate font-medium",
-            LEVEL_CLASS[level],
-          )}
-        >
-          {LEVEL_LABEL[level]}
-        </Badge>
+        {badge}
       </TooltipTrigger>
       <TooltipContent
         side="top"
-        className="max-w-[min(100vw-2rem,20rem)] text-balance leading-snug"
+        className="max-w-[min(100vw-2rem,18rem)] text-balance text-xs leading-snug"
       >
-        {riskText}
+        {riskSummary}
       </TooltipContent>
     </Tooltip>
   );

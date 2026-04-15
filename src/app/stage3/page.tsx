@@ -32,9 +32,19 @@ const MOCK_POOLS: Pool[] = [
     isStablecoin: true,
     audits: 5,
     riskLevel: "low",
-    riskScore: 22,
-    riskText:
-      "TVL alto, varias auditorías y mercado maduro. El riesgo principal es contrato y de mercado, no de custodia tradicional.",
+    riskScore: 2,
+    riskSummary:
+      "Riesgo bajo: 2/10 (bajo). Abre la fila para ver el desglose.",
+    riskDetailSections: [
+      {
+        label: "Puntuación",
+        text: "2/10 — nivel bajo. Estimación interna, no calificación oficial.",
+      },
+      {
+        label: "Aviso",
+        text: "Esto no es asesoramiento financiero. Puedes perder capital.",
+      },
+    ],
     category: "Lending",
     url: "https://app.aave.com",
     defillamaUrl: "https://defillama.com/protocol/aave",
@@ -53,9 +63,19 @@ const MOCK_POOLS: Pool[] = [
     isStablecoin: true,
     audits: 3,
     riskLevel: "medium",
-    riskScore: 48,
-    riskText:
-      "Pool de liquidez estable con complejidad adicional (LP). Riesgo de smart contract y de peg.",
+    riskScore: 5,
+    riskSummary:
+      "Riesgo medio: 5/10 (medio) · pool multi / IL posible. Abre la fila para ver el desglose.",
+    riskDetailSections: [
+      {
+        label: "Estructura del pool",
+        text: "Pool de liquidez con varios activos; riesgo de contrato y de peg.",
+      },
+      {
+        label: "Aviso",
+        text: "Esto no es asesoramiento financiero. Puedes perder capital.",
+      },
+    ],
     category: "DEX",
     url: "https://curve.fi",
     defillamaUrl: "https://defillama.com/protocol/curve-dex",
@@ -74,9 +94,19 @@ const MOCK_POOLS: Pool[] = [
     isStablecoin: true,
     audits: 0,
     riskLevel: "high",
-    riskScore: 82,
-    riskText:
-      "Rendimiento muy elevado vs mercado; menor TVL y sin auditorías listadas. Considera solo capital que puedas perder.",
+    riskScore: 9,
+    riskSummary:
+      "Riesgo alto: 9/10 (alto) · TVL ~2.0M USD · sin auditorías listadas · APY muy alto. Abre la fila para ver el desglose.",
+    riskDetailSections: [
+      {
+        label: "Rendimiento (APY)",
+        text: "APY elevado: revisa incentivos y sostenibilidad del rendimiento.",
+      },
+      {
+        label: "Aviso",
+        text: "Esto no es asesoramiento financiero. Puedes perder capital.",
+      },
+    ],
     category: "Lending",
     url: "https://example.com",
     defillamaUrl: "https://defillama.com",
@@ -115,15 +145,15 @@ export default function Stage3ShowcasePage() {
           <div className="flex flex-wrap gap-3">
             <RiskBadge
               level="low"
-              riskText="Ejemplo de tooltip para riesgo bajo."
+              riskSummary="Resumen corto: 2/10 (bajo). Abre la fila para el desglose."
             />
             <RiskBadge
               level="medium"
-              riskText="Ejemplo de tooltip para riesgo medio."
+              riskSummary="Resumen corto: 5/10 (medio). Abre la fila para el desglose."
             />
             <RiskBadge
               level="high"
-              riskText="Ejemplo de tooltip para riesgo alto."
+              riskSummary="Resumen corto: 9/10 (alto). Abre la fila para el desglose."
             />
           </div>
         </section>

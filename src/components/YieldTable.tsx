@@ -210,7 +210,7 @@ export function YieldTable({
                     <TableCell className="py-3">
                       <RiskBadge
                         level={pool.riskLevel}
-                        riskText={pool.riskText}
+                        riskSummary={pool.riskSummary}
                       />
                     </TableCell>
                     <TableCell className="py-3 tabular-nums font-semibold text-ink-primary">

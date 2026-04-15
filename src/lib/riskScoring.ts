@@ -1,4 +1,4 @@
-import type { Pool, RiskLevel } from "@/types";
+import type { Pool, RiskDetailSection, RiskLevel } from "@/types";
 import { PROTOCOL_METADATA } from "@/lib/constants";
 
 /** Protocolos auditados y maduros: mínimo 2 auditorías efectivas para el scoring. */
@@ -67,7 +67,10 @@ function formatTvlShort(tvlUsd: number): string {
  */
 export function scorePool(
   raw: RawPoolInput,
-): Pick<Pool, "riskLevel" | "riskScore" | "riskText"> {
+): Pick<
+  Pool,
+  "riskLevel" | "riskScore" | "riskSummary" | "riskDetailSections"
+> {
   let score = 5;
 
   const tvl = raw.tvlUsd;
@@ -109,7 +112,16 @@ export function scorePool(
   else if (score <= 6) riskLevel = "medium";
   else riskLevel = "high";
 
-  const riskText = buildRiskTextSpanish({
+  const riskSummary = buildRiskSummarySpanish({
+    riskLevel,
+    score,
+    tvlUsd: tvl,
+    audits,
+    il,
+    apy,
+  });
+
+  const riskDetailSections = buildRiskDetailSectionsSpanish({
     riskLevel,
     score,
     tvlUsd: tvl,
@@ -121,10 +133,40 @@ export function scorePool(
     exposure: raw.exposure,
   });
 
-  return { riskLevel, riskScore: score, riskText };
+  return { riskLevel, riskScore: score, riskSummary, riskDetailSections };
 }
 
-function buildRiskTextSpanish(args: {
+function levelLabelEs(level: RiskLevel): string {
+  if (level === "low") return "bajo";
+  if (level === "medium") return "medio";
+  return "alto";
+}
+
+/** Tooltip en tabla: una frase clara, sin repetir todo el análisis. */
+function buildRiskSummarySpanish(args: {
+  riskLevel: RiskLevel;
+  score: number;
+  tvlUsd: number;
+  audits: number;
+  il: boolean;
+  apy: number;
+}): string {
+  const { riskLevel, score, tvlUsd, audits, il, apy } = args;
+  const nivel = levelLabelEs(riskLevel);
+  const tvlStr = `${formatTvlShort(tvlUsd)} USD`;
+  const bits: string[] = [`${score}/10 (${nivel})`];
+
+  if (tvlUsd < 1_000_000) bits.push(`TVL ~${tvlStr}`);
+  if (audits === 0) bits.push("sin auditorías listadas");
+  else if (audits === 1) bits.push("1 auditoría listada");
+  if (il) bits.push("pool multi / IL posible");
+  if (apy > 40) bits.push("APY muy alto");
+
+  return `Riesgo ${nivel}: ${bits.join(" · ")}. Abre la fila para ver el desglose.`;
+}
+
+/** Panel de detalle: mismos criterios que antes, en bloques legibles. */
+function buildRiskDetailSectionsSpanish(args: {
   riskLevel: RiskLevel;
   score: number;
   tvlUsd: number;
@@ -134,60 +176,91 @@ function buildRiskTextSpanish(args: {
   symbol: string;
   project: string;
   exposure?: string;
-}): string {
-  const { riskLevel, score, tvlUsd, audits, il, apy, symbol, project, exposure } =
-    args;
-  const parts: string[] = [];
+}): RiskDetailSection[] {
+  const {
+    riskLevel,
+    score,
+    tvlUsd,
+    audits,
+    il,
+    apy,
+    symbol,
+    project,
+    exposure,
+  } = args;
 
-  parts.push(
-    `Puntuación de riesgo ${score}/10 (${riskLevel === "low" ? "bajo" : riskLevel === "medium" ? "medio" : "alto"}).`,
-  );
+  const sections: RiskDetailSection[] = [];
 
-  parts.push(
-    `TVL aproximado ${formatTvlShort(tvlUsd)} USD en liquidez bloqueada; más liquidez suele implicar menor riesgo de mercado relativo al tamaño del pool.`,
-  );
+  sections.push({
+    label: "Puntuación",
+    text: `${score}/10 — nivel ${levelLabelEs(riskLevel)}. Es una estimación interna (TVL, auditorías, estructura y APY), no una calificación oficial.`,
+  });
+
+  sections.push({
+    label: "Liquidez (TVL)",
+    text: `Aproximadamente ${formatTvlShort(tvlUsd)} USD bloqueados. Más liquidez suele reducir el riesgo de mercado relativo al tamaño del pool; montos muy bajos pueden implicar mayor volatilidad o dependencia de pocos participantes.`,
+  });
 
   if (audits >= 2) {
-    parts.push(
-      "El protocolo figura con varias auditorías conocidas en nuestra referencia interna; sigue sin ser garantía absoluta.",
-    );
+    sections.push({
+      label: "Auditorías",
+      text: "El protocolo consta con varias auditorías en nuestra referencia. Eso no elimina el riesgo de contrato ni sustituye tu propia revisión.",
+    });
   } else if (audits === 1) {
-    parts.push(
-      "Hay al menos una auditoría listada para el protocolo; conviene revisar el alcance y la antigüedad del informe.",
-    );
+    sections.push({
+      label: "Auditorías",
+      text: "Hay al menos una auditoría listada; conviene revisar alcance, fecha y hallazgos del informe.",
+    });
   } else {
-    parts.push(
-      "No tenemos auditorías listadas para este protocolo en la referencia usada; el riesgo de contrato puede ser mayor.",
-    );
+    sections.push({
+      label: "Auditorías",
+      text: "No tenemos auditorías listadas para este protocolo en la fuente usada; el riesgo de smart contract puede ser mayor.",
+    });
   }
 
   if (il) {
-    parts.push(
-      "Estructura con riesgo de pérdida impermanente o exposición múltiple; no equivale a un depósito en moneda estable simple.",
-    );
+    sections.push({
+      label: "Estructura del pool",
+      text: "Exposición múltiple o riesgo de pérdida impermanente (IL): no equivale a un depósito simple en un solo estable.",
+    });
   } else if (exposure && exposure.toLowerCase() === "single") {
-    parts.push(
-      "Según DeFiLlama, la exposición es principalmente de un activo (single); el riesgo sigue siendo de contrato y de protocolo.",
-    );
+    sections.push({
+      label: "Estructura del pool",
+      text: "Según DeFiLlama, exposición principalmente a un activo (single). Persiste riesgo de contrato y de protocolo.",
+    });
   } else {
-    parts.push(
-      "Revisa en DeFiLlama la estructura exacta del pool; el riesgo de contrato y de protocolo sigue siendo relevante.",
-    );
+    sections.push({
+      label: "Estructura del pool",
+      text: "Revisa en DeFiLlama la composición exacta; el riesgo de contrato y de integración sigue siendo relevante.",
+    });
   }
 
   if (apy > 40) {
-    parts.push(
-      `Rendimiento anualizado muy alto (~${apy.toFixed(1)}%): suele ir ligado a incentivos temporales o mayor riesgo; desconfía de APYs extremos.`,
-    );
+    sections.push({
+      label: "Rendimiento (APY)",
+      text: `APY total ~${apy.toFixed(1)}%: valores muy altos suelen incluir incentivos temporales o asumir más riesgo; trata los APY extremos con escepticismo.`,
+    });
   } else if (apy > 15) {
-    parts.push(
-      `APY elevado (~${apy.toFixed(1)}%): revisa de dónde viene el rendimiento (interés base vs recompensas).`,
-    );
+    sections.push({
+      label: "Rendimiento (APY)",
+      text: `APY ~${apy.toFixed(1)}%: comprueba cuánto viene de interés base y cuánto de recompensas de token.`,
+    });
+  } else {
+    sections.push({
+      label: "Rendimiento (APY)",
+      text: `APY total ~${apy.toFixed(1)}%. El rendimiento pasado o mostrado no garantiza resultados futuros.`,
+    });
   }
 
-  parts.push(
-    `Activo ${symbol} en ${project}. Esto no es asesoramiento financiero; puedes perder capital.`,
-  );
+  sections.push({
+    label: "Contexto",
+    text: `Activo ${symbol} en ${project}.`,
+  });
 
-  return parts.join(" ");
+  sections.push({
+    label: "Aviso",
+    text: "Esto no es asesoramiento financiero. Puedes perder capital.",
+  });
+
+  return sections;
 }

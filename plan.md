@@ -86,7 +86,7 @@ This document turns the **Redito Implementation Plan** and **Architecture Guide*
 ### Steps
 
 1. **`src/lib/riskScoring.ts`**  
-   - Implement `scorePool` (TVL, audits, yield type → `riskLevel`, `riskScore`, `riskText`).
+   - Implement `scorePool` (TVL, audits, yield type → `riskLevel`, `riskScore`, `riskSummary`, `riskDetailSections`).
 
 2. **`src/lib/defillama.ts`**  
    - `fetchPools()`: filter stablecoins, allowed chains, TVL/APY bounds, transform, sort, top 50.  
@@ -109,7 +109,7 @@ This document turns the **Redito Implementation Plan** and **Architecture Guide*
 
 **Architecture rules:** Components **do not** call `fetch` directly for these APIs — only hooks/lib.
 
-**Stage 2 done when:** In the browser, you can exercise `fetchPools()` (e.g. temporary test or console) and get **real** pools with `riskLevel` and `riskText`; FX and calculator behave sensibly.
+**Stage 2 done when:** In the browser, you can exercise `fetchPools()` (e.g. temporary test or console) and get **real** pools with `riskLevel`, `riskSummary` (tooltip breve) y `riskDetailSections` (detalle en modal); FX and calculator behave sensibly.
 
 ---
 

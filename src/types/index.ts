@@ -4,6 +4,12 @@ export type RiskLevel = "low" | "medium" | "high";
 /** Filtro de la tabla DeFi: todos, solo bajo, o bajo + medio. */
 export type RiskTableFilter = "all" | "low" | "low_and_medium";
 
+/** Bloque de texto para el panel de detalle del instrumento (no tooltip). */
+export interface RiskDetailSection {
+  label: string;
+  text: string;
+}
+
 export interface Pool {
   id: string;
   protocol: string;
@@ -18,7 +24,10 @@ export interface Pool {
   audits: number;
   riskLevel: RiskLevel;
   riskScore: number;
-  riskText: string;
+  /** Resumen corto para el tooltip del badge en la tabla (1–2 frases). */
+  riskSummary: string;
+  /** Desglose estructurado del riesgo en el modal de detalle. */
+  riskDetailSections: RiskDetailSection[];
   category: string;
   url: string;
   defillamaUrl: string;
