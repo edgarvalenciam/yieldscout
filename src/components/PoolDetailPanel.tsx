@@ -53,19 +53,22 @@ export function PoolDetailPanel({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md border border-ink-primary/10 bg-white sm:max-w-xl">
-        <DialogHeader>
-          <DialogTitle className="pr-8 font-display text-lg sm:text-xl">
-            {pool.protocol} · {pool.symbol}
-          </DialogTitle>
-          <DialogDescription>
-            {pool.chain} · {pool.category}
-            {pool.isStablecoin ? " · Estable" : ""}
-          </DialogDescription>
-        </DialogHeader>
+      <DialogContent className="flex max-h-[min(92dvh,880px)] w-[min(100%,calc(100vw-1.25rem))] max-w-3xl flex-col gap-0 overflow-hidden border border-ink-primary/10 bg-white p-0 sm:max-w-2xl lg:max-w-3xl">
+        <div className="shrink-0 border-b border-ink-primary/10 px-5 pb-3 pt-5 pr-12 sm:px-6 sm:pt-6">
+          <DialogHeader>
+            <DialogTitle className="font-display text-lg sm:text-xl">
+              {pool.protocol} · {pool.symbol}
+            </DialogTitle>
+            <DialogDescription>
+              {pool.chain} · {pool.category}
+              {pool.isStablecoin ? " · Estable" : ""}
+            </DialogDescription>
+          </DialogHeader>
+        </div>
 
-        <div className="grid gap-4 text-sm">
-          <section className="rounded-xl border border-ink-primary/10 bg-surface-tertiary p-3">
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4 sm:px-6">
+          <div className="grid gap-4 text-sm">
+            <section className="rounded-xl border border-ink-primary/10 bg-surface-tertiary p-3">
             <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               APY
             </h3>
@@ -89,9 +92,9 @@ export function PoolDetailPanel({
                 </dd>
               </div>
             </dl>
-          </section>
+            </section>
 
-          <section className="flex flex-wrap items-center justify-between gap-3">
+            <section className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-xs font-medium uppercase text-muted-foreground">
                 TVL
@@ -108,9 +111,9 @@ export function PoolDetailPanel({
                 hideTooltip
               />
             </div>
-          </section>
+            </section>
 
-          <section className="rounded-xl border border-ink-primary/10 bg-surface-tertiary p-4">
+            <section className="rounded-xl border border-ink-primary/10 bg-surface-tertiary p-4">
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Análisis de riesgo
             </h3>
@@ -124,9 +127,9 @@ export function PoolDetailPanel({
                 </div>
               ))}
             </dl>
-          </section>
+            </section>
 
-          <section>
+            <section>
             <p className="text-xs font-medium uppercase text-muted-foreground">
               Ganancia anual estimada
             </p>
@@ -137,15 +140,18 @@ export function PoolDetailPanel({
               Con capital de {formatCurrency(capital, currency)} al APY total
               mostrado.
             </p>
-          </section>
+            </section>
 
-          {pool.rewardTokens.length > 0 && (
-            <p className="text-xs text-muted-foreground">
-              Tokens de recompensa: {pool.rewardTokens.join(", ")}
-            </p>
-          )}
+            {pool.rewardTokens.length > 0 && (
+              <p className="text-xs text-muted-foreground">
+                Tokens de recompensa: {pool.rewardTokens.join(", ")}
+              </p>
+            )}
+          </div>
+        </div>
 
-          <div className="flex flex-col gap-2 sm:flex-row">
+        <div className="shrink-0 border-t border-ink-primary/10 bg-surface-tertiary px-5 py-4 sm:px-6">
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             <Button
               variant="default"
               nativeButton={false}
