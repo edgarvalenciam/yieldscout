@@ -25,8 +25,8 @@ export function BenchmarkRow({
   );
 
   return (
-    <TableRow className="bg-[#FFF9E6] hover:bg-[#FFF9E6]">
-      <TableCell className="font-medium text-ink-primary">
+    <TableRow className="border-ink-primary/10 bg-[#FFF9E6] hover:bg-[#FFF9E6]">
+      <TableCell className="py-3 font-medium text-ink-primary">
         <div className="flex flex-col gap-0.5">
           <span>{benchmark.name}</span>
           <span className="text-xs font-normal text-ink-secondary">
@@ -34,10 +34,10 @@ export function BenchmarkRow({
           </span>
         </div>
       </TableCell>
-      <TableCell className="text-ink-secondary max-sm:hidden">
+      <TableCell className="max-sm:hidden py-3 text-ink-secondary">
         Referencia soberana
       </TableCell>
-      <TableCell className="tabular-nums">
+      <TableCell className="py-3 tabular-nums">
         <div className="flex flex-col items-start gap-1">
           <span>
             {benchmark.apyAnnual.toLocaleString("es-MX", {
@@ -61,7 +61,7 @@ export function BenchmarkRow({
           ) : null}
         </div>
       </TableCell>
-      <TableCell>
+      <TableCell className="py-3">
         <Badge
           variant="outline"
           className={cn(
@@ -71,7 +71,7 @@ export function BenchmarkRow({
           Referencia
         </Badge>
       </TableCell>
-      <TableCell className="tabular-nums font-medium text-ink-primary">
+      <TableCell className="py-3 tabular-nums font-semibold text-ink-primary">
         {formatCurrency(result.annual, currency)}
       </TableCell>
     </TableRow>

@@ -41,15 +41,15 @@ export function FilterBar({
   return (
     <div
       className={cn(
-        "flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between",
+        "rounded-xl border border-ink-primary/10 bg-white px-3 py-3 sm:flex sm:items-center sm:justify-between sm:gap-3 sm:px-4",
         className,
       )}
     >
-      <p className="text-sm font-medium text-ink-secondary">
+      <p className="text-sm font-semibold text-ink-secondary">
         Filtrar por riesgo (DeFi)
       </p>
       <div
-        className="flex flex-wrap gap-1.5"
+        className="mt-2 flex flex-wrap gap-1.5 sm:mt-0"
         role="tablist"
         aria-label="Filtro de riesgo"
       >
@@ -61,10 +61,10 @@ export function FilterBar({
             variant="outline"
             disabled={disabled}
             className={cn(
-              "gap-1.5 border-[1.5px] border-ink-primary shadow-none",
+              "h-8 gap-1.5 rounded-lg border border-ink-primary/25 px-2.5 shadow-none",
               filter === item.id
                 ? "bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow"
-                : "bg-transparent font-medium text-ink-primary hover:bg-brand-yellow",
+                : "bg-white font-medium text-ink-primary hover:bg-brand-yellow-soft",
             )}
             onClick={() => onFilterChange(item.id)}
             role="tab"

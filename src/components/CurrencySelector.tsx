@@ -25,7 +25,10 @@ export function CurrencySelector({
 }: CurrencySelectorProps) {
   return (
     <div
-      className={cn("inline-flex flex-wrap gap-1", className)}
+      className={cn(
+        "inline-flex flex-wrap gap-1 rounded-lg border border-ink-primary/15 bg-surface-tertiary p-1",
+        className,
+      )}
       role="group"
       aria-label="Moneda de visualización"
     >
@@ -36,10 +39,10 @@ export function CurrencySelector({
           size="sm"
           variant="outline"
           className={cn(
-            "min-w-[3.25rem] border-[1.5px] border-ink-primary px-3 shadow-none",
+            "h-8 min-w-[3.25rem] border border-ink-primary/15 px-3 shadow-none",
             value === opt.value
-              ? "bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow"
-              : "bg-transparent font-medium text-ink-primary hover:bg-brand-yellow",
+              ? "border-ink-primary/30 bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow"
+              : "bg-white font-medium text-ink-primary hover:bg-brand-yellow-soft",
           )}
           disabled={disabled}
           onClick={() => onChange(opt.value)}

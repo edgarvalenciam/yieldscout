@@ -53,7 +53,7 @@ export function PoolDetailPanel({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md sm:max-w-lg">
+      <DialogContent className="max-w-md border border-ink-primary/10 bg-white sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="pr-8 font-display text-lg sm:text-xl">
             {pool.protocol} · {pool.symbol}
@@ -65,7 +65,7 @@ export function PoolDetailPanel({
         </DialogHeader>
 
         <div className="grid gap-4 text-sm">
-          <section className="rounded-lg border border-border bg-muted/30 p-3">
+          <section className="rounded-xl border border-ink-primary/10 bg-surface-tertiary p-3">
             <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               APY
             </h3>
@@ -82,7 +82,7 @@ export function PoolDetailPanel({
                   {pool.apyReward.toFixed(2)}%
                 </dd>
               </div>
-              <div className="col-span-2 border-t border-border pt-2">
+              <div className="col-span-2 border-t border-ink-primary/10 pt-2">
                 <dt className="text-muted-foreground">Total anual</dt>
                 <dd className="text-lg font-semibold tabular-nums text-ink-primary">
                   {pool.apyTotal.toFixed(2)}%
@@ -129,7 +129,7 @@ export function PoolDetailPanel({
             <Button
               variant="default"
               nativeButton={false}
-              className="gap-2"
+              className="gap-2 bg-ink-primary text-white hover:bg-ink-primary/90"
               render={<a {...linkButtonProps(pool.url)} />}
             >
               Abrir en el protocolo
@@ -138,7 +138,7 @@ export function PoolDetailPanel({
             <Button
               variant="outline"
               nativeButton={false}
-              className="gap-2"
+              className="gap-2 border-ink-primary/20 bg-white text-ink-primary hover:bg-surface-tertiary"
               render={<a {...linkButtonProps(pool.defillamaUrl)} />}
             >
               Ver en DeFiLlama

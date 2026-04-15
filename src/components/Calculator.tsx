@@ -30,7 +30,7 @@ function getSeparators(locale: string) {
 }
 
 const inputClassName = cn(
-  "h-11 w-full min-w-0 rounded-[8px] border-2 border-ink-primary bg-white px-3 py-2 text-lg font-bold text-ink-primary transition-colors outline-none placeholder:text-ink-tertiary focus-visible:border-ink-primary focus-visible:ring-2 focus-visible:ring-ink-primary/20 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+  "h-11 w-full min-w-0 rounded-[10px] border border-ink-primary/25 bg-surface-tertiary px-3 py-2 text-lg font-bold text-ink-primary transition-colors outline-none placeholder:text-ink-tertiary focus-visible:border-ink-primary focus-visible:ring-2 focus-visible:ring-ink-primary/20 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
 );
 
 export function Calculator({
@@ -52,7 +52,7 @@ export function Calculator({
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="ys-capital"
-          className="text-sm font-medium text-ink-secondary"
+          className="text-sm font-semibold text-ink-secondary"
         >
           Capital a comparar
         </label>
@@ -92,9 +92,9 @@ export function Calculator({
             disabled={disabled}
             onClick={() => onCapitalChange(amount)}
             className={cn(
-              "border-[1.5px] border-ink-primary bg-transparent font-medium text-ink-primary shadow-none hover:bg-brand-yellow",
+              "h-8 rounded-lg border border-ink-primary/25 bg-white font-medium text-ink-primary shadow-none hover:bg-brand-yellow-soft",
               capital === amount &&
-                "bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow",
+                "border-ink-primary/30 bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow",
             )}
           >
             {new Intl.NumberFormat(

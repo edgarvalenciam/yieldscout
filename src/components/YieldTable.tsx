@@ -98,37 +98,45 @@ export function YieldTable({
         }}
       />
 
-      <div className="overflow-hidden rounded-lg border border-[#E0E0E0] bg-white shadow-none ring-0">
-        <Table>
+      <div className="overflow-hidden rounded-2xl border border-ink-primary/10 bg-white shadow-card ring-0">
+        <div className="border-b border-ink-primary/10 bg-surface-tertiary px-4 py-3 sm:px-5">
+          <p className="text-sm font-semibold text-ink-primary">
+            Rendimientos comparados
+          </p>
+          <p className="text-xs text-ink-secondary">
+            Selecciona una fila para ver detalle del protocolo y desglose de APY.
+          </p>
+        </div>
+        <Table className="text-sm">
           <TableHeader>
-            <TableRow className="border-[#E0E0E0] bg-ink-primary hover:bg-ink-primary">
+            <TableRow className="border-ink-primary/10 bg-ink-primary hover:bg-ink-primary">
               <TableHead
                 scope="col"
-                className="border-b border-[#E0E0E0] bg-ink-primary font-semibold text-white"
+                className="border-b border-ink-primary/10 bg-ink-primary py-3 font-semibold text-white"
               >
                 Instrumento
               </TableHead>
               <TableHead
                 scope="col"
-                className="max-sm:hidden border-b border-[#E0E0E0] bg-ink-primary font-semibold text-white"
+                className="max-sm:hidden border-b border-ink-primary/10 bg-ink-primary py-3 font-semibold text-white"
               >
                 Info
               </TableHead>
               <TableHead
                 scope="col"
-                className="border-b border-[#E0E0E0] bg-ink-primary font-semibold text-white"
+                className="border-b border-ink-primary/10 bg-ink-primary py-3 font-semibold text-white"
               >
                 APY
               </TableHead>
               <TableHead
                 scope="col"
-                className="border-b border-[#E0E0E0] bg-ink-primary font-semibold text-white"
+                className="border-b border-ink-primary/10 bg-ink-primary py-3 font-semibold text-white"
               >
                 Riesgo
               </TableHead>
               <TableHead
                 scope="col"
-                className="border-b border-[#E0E0E0] bg-ink-primary text-right font-semibold text-white sm:text-left"
+                className="border-b border-ink-primary/10 bg-ink-primary py-3 text-right font-semibold text-white sm:text-left"
               >
                 Ganancia/año
               </TableHead>
@@ -147,7 +155,7 @@ export function YieldTable({
             <TableRow className="bg-white hover:bg-white">
               <TableCell
                 colSpan={5}
-                className="py-2.5 text-center text-sm font-medium text-ink-secondary"
+                className="py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-ink-secondary"
               >
                 Pools DeFi (estables)
               </TableCell>
@@ -158,7 +166,8 @@ export function YieldTable({
                   colSpan={5}
                   className="py-10 text-center text-sm text-muted-foreground"
                 >
-                  No hay pools que coincidan con este filtro.
+                  No hay pools que coincidan con este filtro. Cambia el nivel de
+                  riesgo para ampliar resultados.
                 </TableCell>
               </TableRow>
             ) : (
@@ -172,7 +181,7 @@ export function YieldTable({
                 return (
                   <TableRow
                     key={pool.id}
-                    className="cursor-pointer"
+                    className="cursor-pointer border-ink-primary/10 transition-colors hover:bg-brand-yellow-soft/35"
                     tabIndex={0}
                     onClick={() => setSelected(pool)}
                     onKeyDown={(e) => {
@@ -182,7 +191,7 @@ export function YieldTable({
                       }
                     }}
                   >
-                    <TableCell className="font-medium text-ink-primary">
+                    <TableCell className="py-3 font-medium text-ink-primary">
                       <div className="flex flex-col gap-0.5">
                         <span>
                           {pool.protocol} · {pool.symbol}
@@ -192,19 +201,19 @@ export function YieldTable({
                         </span>
                       </div>
                     </TableCell>
-                    <TableCell className="max-sm:hidden text-ink-secondary">
+                    <TableCell className="max-sm:hidden py-3 text-ink-secondary">
                       {pool.chain} · {pool.category}
                     </TableCell>
-                    <TableCell className="tabular-nums font-medium">
+                    <TableCell className="py-3 tabular-nums font-semibold">
                       {pool.apyTotal.toFixed(2)}%
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="py-3">
                       <RiskBadge
                         level={pool.riskLevel}
                         riskText={pool.riskText}
                       />
                     </TableCell>
-                    <TableCell className="tabular-nums font-medium text-ink-primary">
+                    <TableCell className="py-3 tabular-nums font-semibold text-ink-primary">
                       {formatCurrency(est.annual, currency)}
                     </TableCell>
                   </TableRow>

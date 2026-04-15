@@ -72,7 +72,7 @@ export function AlertCTA({ className }: AlertCTAProps) {
     return (
       <Card
         className={cn(
-          "border-ink-primary bg-ink-primary text-white ring-0 ring-transparent",
+          "rounded-2xl border-0 bg-ink-primary text-white shadow-card ring-0 ring-transparent",
           className,
         )}
       >
@@ -92,7 +92,7 @@ export function AlertCTA({ className }: AlertCTAProps) {
   return (
     <Card
       className={cn(
-        "border-ink-primary bg-ink-primary text-white ring-0 ring-transparent",
+        "rounded-2xl border-0 bg-ink-primary text-white shadow-card ring-0 ring-transparent",
         className,
       )}
     >
@@ -124,13 +124,13 @@ export function AlertCTA({ className }: AlertCTAProps) {
               placeholder="tu@correo.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-9 border-0 bg-white text-ink-primary placeholder:text-ink-tertiary focus-visible:ring-2 focus-visible:ring-brand-yellow/80"
+              className="h-10 border-0 bg-white text-ink-primary placeholder:text-ink-tertiary focus-visible:ring-2 focus-visible:ring-brand-yellow/80"
             />
           </div>
           <Button
             type="submit"
             disabled={busy}
-            className="bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow/90"
+            className="h-10 bg-brand-yellow font-bold text-ink-primary hover:bg-brand-yellow/90"
           >
             Quiero alertas
           </Button>
